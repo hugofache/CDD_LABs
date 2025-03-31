@@ -1,0 +1,7 @@
+Vivado Simulator 2020.1
+Time resolution is 1 ps
+Test PASSED: Sum = 0000000000001000, Carry = 0
+Test PASSED: Sum = 0000000000001001, Carry = 0
+Test PASSED: Sum = 0000000000000000, Carry = 1
+Test PASSED: Sum = 1111111111111111, Carry = 1
+$finish called at time : 80 ns : File "C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab1/lab1/lab1.srcs/sim_1/new/ripple_carry_adder_Nb_TB.v" Line 71
