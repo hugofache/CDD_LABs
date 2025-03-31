@@ -1,0 +1,11 @@
+0.7
+2020.1
+May 27 2020
+20:09:33
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sim_1/new/uart_rx_TB.v,1741432073,verilog,,,,uart_rx_TB,,,,,,,,
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sim_1/new/uart_top_TB.v,1742595922,verilog,,,,uart_top_TB,,,,,,,,
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sim_1/new/uart_tx_TB.v,1741355129,verilog,,,,uart_tx_TB,,,,,,,,
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sources_1/new/uart_rx.v,1742594969,verilog,,C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sources_1/new/uart_top.v,,uart_rx,,,,,,,,
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sources_1/new/uart_top.v,1742596789,verilog,,C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sources_1/new/uart_tx.v,,uart_top,,,,,,,,
+C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sources_1/new/uart_tx.v,1742570407,verilog,,C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab2/lab2/lab2.srcs/sim_1/new/uart_top_TB.v,,uart_tx,,,,,,,,
