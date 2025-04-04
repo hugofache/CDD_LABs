@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-// Date        : Sun Mar 30 23:46:24 2025
+// Date        : Fri Apr  4 22:11:02 2025
 // Host        : Arnaud-Hugo-Laptop running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub {c:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital
 //               Design/Lab3/lab3/lab3.srcs/sources_1/bd/design_1/ip/design_1_uart_top_0_0/design_1_uart_top_0_0_stub.v}

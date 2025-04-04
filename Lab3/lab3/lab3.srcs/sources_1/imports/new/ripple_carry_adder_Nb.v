@@ -30,7 +30,7 @@ module ripple_carry_adder_Nb #(
     output  wire                    oCarry
     );
     
-    wire [ADDER_WIDTH-1:0] wCarries;
+    wire [ADDER_WIDTH:0] wCarries;
     assign wCarries[0] = iCarry;
     
     genvar i;
@@ -42,6 +42,6 @@ module ripple_carry_adder_Nb #(
             .oCarry(wCarries[i+1]), .oSum(oSum[i]));
         end
     endgenerate
-    assign oCarry = wCarries[ADDER_WIDTH-1];
+    assign oCarry = wCarries[ADDER_WIDTH];
   
 endmodule

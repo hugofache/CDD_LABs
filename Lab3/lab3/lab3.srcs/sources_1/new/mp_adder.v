@@ -122,11 +122,11 @@ module mp_adder #(
     // FINITE STATE MACHINE
     
     // State definition  
-    localparam s_IDLE         = 3'b000;
-    localparam s_STORE_OPS    = 3'b001;
-    localparam s_ADD_FIRST    = 3'b010;
-    localparam s_ADD_WORDS    = 3'b011;
-    localparam s_DONE         = 3'b100;
+    localparam s_IDLE         = 3'b000; //0
+    localparam s_STORE_OPS    = 3'b001; //1
+    localparam s_ADD_FIRST    = 3'b010; //2
+    localparam s_ADD_WORDS    = 3'b011; //3
+    localparam s_DONE         = 3'b100; //4
 
     reg [2:0] rFSM_current, wFSM_next;
     
@@ -224,8 +224,8 @@ module mp_adder #(
         endcase
     end
 
-    // Describe done signal
-    // It should be high at the same clock cycle when the output ready
+//    // Describe done signal
+//    // It should be high at the same clock cycle when the output ready
 
     reg regDone;
     always @(posedge iClk)
@@ -235,6 +235,7 @@ module mp_adder #(
     end
 
     assign oDone = regDone;
+    //assign oDone = (rFSM_current == s_DONE)? 1'b1: 1'b0;
     
 
 endmodule
