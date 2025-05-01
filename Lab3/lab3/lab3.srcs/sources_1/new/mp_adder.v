@@ -235,6 +235,7 @@ module mp_adder #(
     end
 
     assign oDone = regDone;
+    
     //assign oDone = (rFSM_current == s_DONE)? 1'b1: 1'b0;
     
 

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Hugo Fache
 // 
 // Create Date: 03/07/2025 04:35:05 PM
 // Design Name: 
@@ -82,7 +82,7 @@ begin
     case (rCurrentState)
     sIDLE:  
         begin
-            if(iRxSerial == 0)
+            if(rRx2 == 0) //instead of iRxSerial
             begin
                 wNextState = sSTART;
                 wCntNext = 0;
@@ -114,7 +114,7 @@ begin
             wCntNext = rCntCurrent+1;
             wBitNext = rBitCurrent;
             //Sample data
-            if(rCntCurrent == CLKS_PER_BIT/2)
+            if(rCntCurrent == (CLKS_PER_BIT-1)/2) //instead of CLKs_PER_BIT/2
                 wRxByte = {rRx2, rRxByte[7:1]};
 
             end

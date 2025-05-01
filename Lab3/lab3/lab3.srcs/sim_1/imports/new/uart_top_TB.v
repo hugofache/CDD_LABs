@@ -16,8 +16,8 @@ module uart_top_TB ();
   // this will give CLKS_PER_BIT = 100 / 10 = 10
   localparam CLK_FREQ_inst  = 100;
   localparam BAUD_RATE_inst = 10;
-  localparam OPERAND_WIDTH_inst = 16; //divide by 8 -> nr bytes -> change in for loop
-  localparam ADDER_WIDTH_inst = 4;
+  localparam OPERAND_WIDTH_inst = 512; //divide by 8 -> nr bytes -> change in for loop
+  localparam ADDER_WIDTH_inst = 16;
   
   // Instantiate DUT  
   uart_top 
@@ -79,73 +79,71 @@ module uart_top_TB ();
       // OPERAND 1
       
       //2 bytes
-      rTxByte = 8'hff;
-      rTxStart = 1;
-      #CLOCK_PERIOD;
-      rTxStart = 0;
-      wait(wTxDone==1);
-      #CLOCK_PERIOD;
+//      rTxByte = 8'hff;
+//      rTxStart = 1;
+//      #CLOCK_PERIOD;
+//      rTxStart = 0;
+//      wait(wTxDone==1);
+//      #CLOCK_PERIOD;
       
-      rTxByte = 8'hff;
-      rTxStart = 1;
-      #CLOCK_PERIOD;
-      rTxStart = 0;
-      wait(wTxDone==1);
-      #CLOCK_PERIOD
+//      rTxByte = 8'hff;
+//      rTxStart = 1;
+//      #CLOCK_PERIOD;
+//      rTxStart = 0;
+//      wait(wTxDone==1);
+//      #CLOCK_PERIOD
        
        //More bytes (repeating)
-//     for(i = 0; i < 3; i = i + 1) begin
-//          rTxByte = 8'hab;
-//          rTxStart = 1;
-//          #CLOCK_PERIOD;
-//          rTxStart = 0;
+     for(i = 0; i < 64; i = i + 1) begin
+          if(i%2 == 0)
+            rTxByte = 8'h00;
+          else
+            rTxByte = 8'h00;
+            
+          rTxStart = 1;
+          #CLOCK_PERIOD;
+          rTxStart = 0;
           
-//          wait(wTxDone == 1);
-//          #CLOCK_PERIOD;
-//      end
-//      rTxByte = 8'hac;
-//          rTxStart = 1;
-//          #CLOCK_PERIOD;
-//          rTxStart = 0;
-          
-//          wait(wTxDone == 1);
-//          #CLOCK_PERIOD;
+          wait(wTxDone == 1);
+          #CLOCK_PERIOD;
+      end
 
       
 //     // OPERAND 2 
 
+        
+        
         //2 bytes  
-      rTxByte = 8'hff;
-      rTxStart = 1;
-      #CLOCK_PERIOD;
-      rTxStart = 0;
-      wait(wTxDone==1);
-      #CLOCK_PERIOD;
+//      rTxByte = 8'hff;
+//      rTxStart = 1;
+//      #CLOCK_PERIOD;
+//      rTxStart = 0;
+//      wait(wTxDone==1);
+//      #CLOCK_PERIOD;
       
-      rTxByte = 8'hff;
-      rTxStart = 1;
-      #CLOCK_PERIOD;
-      rTxStart = 0;
-      wait(wTxDone==1);
-      #CLOCK_PERIOD;
+//      rTxByte = 8'hff;
+//      rTxStart = 1;
+//      #CLOCK_PERIOD;
+//      rTxStart = 0;
+//      wait(wTxDone==1);
+//      #CLOCK_PERIOD
+        
       
       //More bytes (repeating)
-//     for(i = 0; i < 3; i = i + 1) begin
-//          rTxByte = 8'hcd;
-//          rTxStart = 1;
-//          #CLOCK_PERIOD
-//          rTxStart = 0;
+      
+     for(i = 0; i < 64; i = i + 1) begin
+          if(i%2 == 0)
+            rTxByte = 8'hff;
+          else
+            rTxByte = 8'hff;
+            
+          rTxStart = 1;
+          #CLOCK_PERIOD;
+          rTxStart = 0;
           
-//          wait(wTxDone == 1);
-//          #CLOCK_PERIOD;
-//      end
-//      rTxByte = 8'hef;
-//          rTxStart = 1;
-//          #CLOCK_PERIOD;
-//          rTxStart = 0;
-          
-//          wait(wTxDone == 1);
-//          #CLOCK_PERIOD;
+          wait(wTxDone == 1);
+          #CLOCK_PERIOD;
+      end
       
       // Let it run for a while
       #(1000*CLOCK_PERIOD); 
@@ -265,7 +263,7 @@ module uart_top_TB ();
 //       #CLOCK_PERIOD;
           
 
-        #(2000*CLOCK_PERIOD);
+        #(5000*CLOCK_PERIOD);
       $stop;
            
     end

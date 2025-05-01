@@ -43,7 +43,7 @@ module uart_top #(
   reg [NBYTES*8-1:0] rB;
   reg [(NBYTES+1)*8-1:0] rRes;
   
-  reg [$clog2(NBYTES)+1:0] rCnt; // counting n-th byte + one byte including carry
+  reg [$clog2(NBYTES):0] rCnt; // counting n-th byte + one byte including carry
   
   // Connection to UART RX (inputs = registers, outputs = wires)
   
@@ -113,52 +113,57 @@ module uart_top #(
         
         // received NBYTES for rA
         s_WAIT_RA :
-          begin    
-            if(wRxDone) begin
-                if( rCnt < NBYTES) begin // if rx line is not busy and bytes count < bytes_to_be_sent
-                    rA <= {rA[NBYTES*8-9:0], wRxByte};      // we receive and store in position from [current_byte_number*8-1:current_byte_number*8-8] and shift from right to left                                                                        
+          begin
+            if(rCnt < NBYTES)
+            begin
+                if(wRxDone)
+                begin
+                    rA <= {rA[NBYTES*8-9:0], wRxByte};                                                                   
                     rCnt <= rCnt+1;
                     rFSM <= s_WAIT_RA;
-                end                           
-                if (rCnt == NBYTES) begin                             // if this is the n-th byte, store the byte                                                                   
+                end
+            
+                else
+                begin
                     rA <= rA;
-                    rCnt <= 0;                                        // reset counter to 0
-                    rFSM <= s_WAIT_RB;                                // rA has been filled, go to rB
-                end                                     
-            end else begin 
-                rFSM <= s_WAIT_RA;                                    // rx still busy, stay in this state
-                if (rCnt == NBYTES) begin                             // if this is the n-th byte, store the byte                                                                         
-                    rA <= rA;
-                    rCnt <= 0;                                        // reset counter to 0
-                    rFSM <= s_WAIT_RB;                                // rA has been filled, go to rB
-                end 
+                    rCnt <= rCnt;
+                    rFSM <= s_WAIT_RA;  
+                end
+            end
+          
+            else //rCnt == NBYTES
+            begin
+                rA <= rA;
+                rCnt <= 0;                                       
+                rFSM <= s_WAIT_RB;
             end
           end
         
-        // TODO: integrate rStart that will be set to high when 2x 64 bytes are received.
-        // received NBYTES for rB
         s_WAIT_RB :
           begin    
-            if(wRxDone) begin
-                if( rCnt < NBYTES) begin // if rx line is not busy and bytes count < bytes_to_be_sent
-                    rB <= {rB[NBYTES*8-9:0], wRxByte};      // we receive and store in position from [current_byte_number*8-1:current_byte_number*8-8] and shift from right to left                                                                        
+            if(rCnt < NBYTES)
+            begin
+                if(wRxDone)
+                begin
+                    rB <= {rB[NBYTES*8-9:0], wRxByte};                                                                    
                     rCnt <= rCnt+1;
                     rFSM <= s_WAIT_RB;
-                end                           
-                if (rCnt == NBYTES) begin                             // if this is the n-th byte, store the byte                                                                      
+                end
+            
+                else
+                begin
                     rB <= rB;
-                    rCnt <= 0;                                        // reset counter to 0
-                    rStart <= 1;                                      // set rStart high for next state
-                    rFSM <= s_MP_ADD;                                 // rB also has been filled, go to s_MP_ADD
-                end                                     
-            end else begin 
-                rFSM <= s_WAIT_RB;                                    // rx still busy, stay in this state
-                if (rCnt == NBYTES) begin                             // if this is the n-th byte, store the byte                                                                        
-                    rB <= rB;
-                    rCnt <= 0;                                        // reset counter to 0
-                    rStart <= 1;                                      // set rStart high for next state
-                    rFSM <= s_MP_ADD;                                 // rB also has been filled, go to s_MP_ADD
-                end 
+                    rCnt <= rCnt;
+                    rFSM <= s_WAIT_RB;  
+                end
+            end
+          
+            else //rCnt == NBYTES
+            begin
+                rB <= rB;
+                rCnt <= 0;                                       
+                rFSM <= s_MP_ADD;
+                rStart <= 1;
             end
           end
           
@@ -167,32 +172,31 @@ module uart_top #(
         s_MP_ADD :
           begin
             rStart <= 0;
-            if (wDone) begin                                          // if 64byte + carry result has been calcualted
+            if (wDone) begin                                        
                 rRes <= {7'b0, wRes}; // WE TAKE THE RESULT OF THE ADDITION + CARRY AND PLACE IT IN THE RES REGISTER. THEN WE CONCATENATE
-                                    // 7 0s TO THE LEFT TO FILL UP THE "CARRY BYTE"                                        // extract the result buffer immediately
+                                    // 7 0s TO THE LEFT TO FILL UP THE "CARRY BYTE"   
                 rFSM <= s_TX;                                         // go to TX state to send result to PC
-            end else begin
+            end else begin //not wDone yet
                 rFSM <= s_MP_ADD;
                 rRes <= rRes;
             end
           end
                        
-        s_TX :                                                        // state to prepare the tx_Nbytes (save into buffer)
+        s_TX :                                                     
           begin
-            if ( (rCnt < NBYTES+1) && (wTxBusy ==0) )                 // if tx line is not busy and bytes count < bytes_to_be_sent. 
-              begin                                                   // intotal NBYTES+1 as the extra byte is 7*0 + one carry 
-                rFSM <= s_WAIT_TX;                                    // next state is to go wait_for_Nbytes_tx_to_be_done buffer state
+            if ( (rCnt <= NBYTES) && (wTxBusy == 0) )                
+              begin                                                   
+                rFSM <= s_WAIT_TX;                                    
                 rTxStart <= 1; 
-                rTxByte = rRes[(NBYTES+1)*8-1:(NBYTES+1)*8-8];   // we send the uppermost byte WE NEED TO MAKE IT BLOCKING 
-                                                                // SO THAT WE FIRST SET THE SENDING BYTE AND THEN SHIFT
-                rRes = {rRes[NBYTES*8-1:0] , 8'b0000_0000};    // we shift from right to left. THINK OF UART ARCHITECTURE: IF YOU RECEIVE
-                                                            // FROM LEFT TO RIGHT THEN YOU SEND BACK FROM RIGHT TO LEFT
+                rTxByte = rRes[(NBYTES+1)*8-1:(NBYTES+1)*8-8];   // we send the uppermost byte
+                rRes = {rRes[NBYTES*8-1:0] , 8'b0000_0000};    // we shift from right to left
+                                                            
                 rCnt <= rCnt + 1;
               end 
             else 
-              begin                                                   // tCnt == NBYTES && wTxBusy || wTxBusy == 1
-                rFSM <= s_DONE;                                       // finish preparing nbytes_tx_buffer, go to RX
-                rTxStart <= 0;                                        // reset all buffers
+              begin                                                   
+                rFSM <= s_DONE;                                       
+                rTxStart <= 0;                                        
                 rTxByte <= rTxByte;
                 rRes <= rRes;
                 rCnt <= 0;
@@ -201,17 +205,17 @@ module uart_top #(
             
         s_WAIT_TX :
           begin
-            if (wTxDone) begin                                        // if tx_action_finished signal is recieved from uart_tx
-              rFSM <= s_TX;                                           // if bytes preparation and sending is done, go to the next nBytes preparation state
+            if (wTxDone) begin                                        
+              rFSM <= s_TX;                                           
             end else begin
-              rFSM <= s_WAIT_TX;                                      // if the tx is still sending, wait still
-              rTxStart <= 0;                                          // do not restart
+              rFSM <= s_WAIT_TX;                                      
+              rTxStart <= 0;                                          
             end
           end 
           
         s_DONE :
           begin
-            rFSM <= s_IDLE;                                           // finished sending
+            rFSM <= s_IDLE;                                           
           end 
 
         default :

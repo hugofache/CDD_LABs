@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Fri Apr  4 22:09:52 2025" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Sun Apr 13 18:40:08 2025" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2020.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2902540" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "ac883497-b2b3-4c68-94df-486bfe5029e3" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "4d34c120a08a420cb87682dc9c766ca6" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "74" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "117" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "AMD Ryzen 3 4300U with Radeon Graphics         " -context "user_environment"
@@ -24,9 +24,9 @@ webtalk_add_data -client project -key system_ram -value "33.000 GB" -context "us
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "16687 ns" -context "xsim\\usage"
+webtalk_add_data -client xsim -key runtime -value "82279 ns" -context "xsim\\usage"
 webtalk_add_data -client xsim -key iteration -value "0" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Simulation_Time -value "0.06_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "8788_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 2492030260 -regid "" -xml C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Simulation_Memory -value "9956_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 2189914072 -regid "" -xml C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.sim/sim_1/behav/xsim/xsim.dir/uart_top_TB_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

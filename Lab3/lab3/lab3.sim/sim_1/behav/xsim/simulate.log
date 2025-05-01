@@ -1,3 +1,3 @@
 Vivado Simulator 2020.1
 Time resolution is 1 ps
-$stop called at time : 16687 ns : File "C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.srcs/sim_1/imports/new/uart_top_TB.v" Line 269
+$stop called at time : 82279 ns : File "C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Lab3/lab3/lab3.srcs/sim_1/imports/new/uart_top_TB.v" Line 267
