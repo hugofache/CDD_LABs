@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Thu May  1 13:47:12 2025
+| Date         : Thu May  1 22:19:43 2025
 | Host         : Arnaud-Hugo-Laptop running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file design_1_wrapper_control_sets_placed.rpt
 | Design       : design_1_wrapper
@@ -87,14 +87,14 @@ Table of Contents
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2[0]   | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_5  |                4 |             27 |         6.75 |
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2[0]   | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_9  |                4 |             28 |         7.00 |
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2_0[0] | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_5  |                5 |             32 |         6.40 |
-|  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2[0]   | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_1  |                5 |             35 |         7.00 |
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2[0]   | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_7  |                6 |             35 |         5.83 |
+|  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2[0]   | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_1  |                5 |             35 |         7.00 |
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2_0[0] | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_9  |                5 |             40 |         8.00 |
 |  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_7  |               12 |             47 |         3.92 |
 |  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_2  |               18 |             61 |         3.39 |
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2_0[0] | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_2  |               12 |             62 |         5.17 |
-|  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_5  |               18 |             69 |         3.83 |
 |  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_9  |               18 |             69 |         3.83 |
+|  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_5  |               18 |             69 |         3.83 |
 |  iClk_IBUF_BUFG | design_1_i/uart_top_0/inst/UART_RX_INST/FSM_sequential_rFSM_reg[2]_rep__2[0]   | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_6  |               10 |             69 |         6.90 |
 |  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_1  |               21 |             71 |         3.38 |
 |  iClk_IBUF_BUFG |                                                                                | design_1_i/Debounce_Switch_0/inst/o_Switch_repN_4  |               22 |             71 |         3.23 |

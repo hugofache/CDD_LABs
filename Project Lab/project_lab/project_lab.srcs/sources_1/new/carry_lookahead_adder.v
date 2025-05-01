@@ -21,7 +21,7 @@
 
 
 module carry_lookahead_adder#(
-    parameter ADDER_WIDTH = 16
+    parameter ADDER_WIDTH = 4
     )
     (
     input wire [ADDER_WIDTH-1:0] iA, iB,
@@ -58,8 +58,11 @@ module carry_lookahead_adder#(
             //OG input carry propagated till here
             //OR
             //generated carry propagated till here (bitwise-OR-reduction)
-            assign wCarries[i+1] = (&wPropagates[i:0]&iCarry) | (|wPropagatedGenerates);
+            assign wCarries[i+1] = (&wPropagates[i:0] & iCarry) | (|wPropagatedGenerates);
             
         end
     endgenerate
+    
+    assign oCarry = wCarries[ADDER_WIDTH];
+    
 endmodule
