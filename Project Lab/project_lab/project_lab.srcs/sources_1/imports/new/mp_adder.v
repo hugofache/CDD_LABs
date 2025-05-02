@@ -6,8 +6,8 @@ module mp_adder #(
       // if the operands you want to add have an OPERAND_WIDTH non-multiple of ADDER_WIDTH
       //   you'll have to extend them by padding them with zeroes
       parameter OPERAND_WIDTH = 512,
-      parameter ADDER_WIDTH   = 64,
-      parameter BLOCK_SIZE = 4,
+      parameter ADDER_WIDTH   = 16, //16, 32, 64, 128
+      parameter BLOCK_SIZE = 4, //ideal if block_size = sqrt(adder_width) (in theory)
       parameter N_ITERATIONS  = OPERAND_WIDTH / ADDER_WIDTH
     )
     (
@@ -71,6 +71,11 @@ module mp_adder #(
     wire                    carry_in;
     wire [ADDER_WIDTH-1:0]  result;
     wire                    carry_out;
+    
+    
+    
+    // Choose wanted Adder Type: RCA, CSelA, CLA, CSelLA
+    // CSelLA is combination of CSelA and CLA
 
 //    ripple_carry_adder_Nb #( .ADDER_WIDTH(ADDER_WIDTH) ) 
 //    RCA_inst   (
@@ -112,6 +117,9 @@ module mp_adder #(
         .oSum(result),
         .oCarry(carry_out)
       );
+
+
+
 
 
     // Describe an OPERAND_WIDTH-bit register for storing the result

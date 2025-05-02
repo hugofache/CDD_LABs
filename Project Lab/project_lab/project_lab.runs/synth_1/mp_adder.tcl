@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.runs/synth_1/design_1_wrapper.tcl"
+  variable script "C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.runs/synth_1/mp_adder.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 1
-set_param xicom.use_bs_reader 1
 set_msg_config -id {HDL-1065} -limit 10000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z020clg400-1
@@ -79,7 +77,6 @@ create_project -in_memory -part xc7z020clg400-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.cache/wt} [current_project]
 set_property parent.project_path {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
@@ -89,10 +86,11 @@ set_property ip_output_repo {c:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Comple
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib {{C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v}}
-add_files {{C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/bd/design_1/design_1.bd}}
-set_property used_in_implementation false [get_files -all {{C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/bd/design_1/design_1_ooc.xdc}}]
-
+read_verilog -library xil_defaultlib {
+  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/imports/new/full_adder.v}
+  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v}
+  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/imports/new/mp_adder.v}
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -105,23 +103,21 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc {{C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/constrs_1/imports/new/pynq-z2.xdc}}
 set_property used_in_implementation false [get_files {{C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/constrs_1/imports/new/pynq-z2.xdc}}]
 
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top design_1_wrapper -part xc7z020clg400-1
+synth_design -top mp_adder -part xc7z020clg400-1
 OPTRACE "synth_design" END { }
 
 
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef design_1_wrapper.dcp
+write_checkpoint -force -noxdef mp_adder.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb"
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file mp_adder_utilization_synth.rpt -pb mp_adder_utilization_synth.pb"
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]
