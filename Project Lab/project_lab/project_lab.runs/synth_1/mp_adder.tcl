@@ -87,8 +87,9 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/imports/new/full_adder.v}
-  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v}
+  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/new/carry_lookahead_adder.v}
+  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/new/carry_select_lookahead_adder.v}
+  {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/new/partial_full_adder.v}
   {C:/Users/hugof/Documents/KU Leuven/FIIW/BAC3/Complex Digital Design/Project Lab/project_lab/project_lab.srcs/sources_1/imports/new/mp_adder.v}
 }
 OPTRACE "Adding files" END { }
